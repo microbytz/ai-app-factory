@@ -1,0 +1,27 @@
+name: AI Auto-Build
+on:
+  workflow_dispatch: # Allows you to trigger it from your phone!
+  schedule:
+    - cron: '0 2 * * *' # Runs every night at 2 AM
+
+jobs:
+  build:
+    runs-with: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install google-genai e2b-code-interpreter
+      - name: Run Factory
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          E2B_API_KEY: ${{ secrets.E2B_API_KEY }}
+        run: python factory.py
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: build
