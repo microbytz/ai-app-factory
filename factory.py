@@ -16,11 +16,17 @@ def run_factory(app_description):
     Use CDN links for Three.js. 
     IMPORTANT: Provide ONLY the code inside a triple backtick block.
     """
+    # Ensure the model name is exactly this
+    model_id = "gemini-1.5-flash" 
     
     response = client.models.generate_content(
-        model="gemini-1.5-flash", # <--- Fixed!
-        contents=architect_prompt
+        model=model_id,
+        contents=architect_prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.7,
+        )
     )
+    
     
     # Extract code between backticks
     raw_text = response.text
