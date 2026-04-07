@@ -17,7 +17,7 @@ def run_factory(app_description):
     IMPORTANT: Provide ONLY the code inside a triple backtick block.
     """
     # Ensure the model name is exactly this
-    model_id = "gemini-1.5-flash" 
+   model_id = "gemini-1.5-pro"
     
     response = client.models.generate_content(
         model=model_id,
