@@ -11,13 +11,14 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 def run_factory(app_description):
     print(f"🚀 Starting build for: {app_description}")
     
+    # Ensure the model name is exactly this
+    model_id = "gemini-1.5-flash" 
+    
     architect_prompt = f"""
     You are a Senior Web Developer. Build a single-file HTML/JS app for: {app_description}.
     Use CDN links for Three.js. 
     IMPORTANT: Provide ONLY the code inside a triple backtick block.
     """
-    # Ensure the model name is exactly this
-   model_id = "gemini-1.5-pro"
     
     response = client.models.generate_content(
         model=model_id,
@@ -27,12 +28,10 @@ def run_factory(app_description):
         )
     )
     
-    
     # Extract code between backticks
     raw_text = response.text
     if "```" in raw_text:
         code = raw_text.split("```")[1]
-        # Remove the 'html' or 'javascript' label if present
         if code.startswith("html"): code = code[4:]
         if code.startswith("javascript"): code = code[10:]
     else:
