@@ -5,7 +5,7 @@ from e2b_code_interpreter import Sandbox
 
 # 1. Setup API Keys (Use Environment Variables for safety!)
 GEMINI_API_KEY = "AIzaSyCfRtMGlVnz46ffMmcsQ7yWaEk80a3p0m8"
-E2B_API_KEY = "e2b_7b37e42a8fbad41ca788b8674c6ed1ff622863db
+E2B_API_KEY = "e2b_7b37e42a8fbad41ca788b8674c6ed1ff622863db"
 "
 
 client = genai.Client(api_key=GEMINI_API_KEY)
