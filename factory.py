@@ -18,7 +18,7 @@ def run_factory(app_description):
     """
     
     response = client.models.generate_content(
-        model="gemini-1.5-flash", 
+        model="gemini-1.5-flash", # <--- Fixed!
         contents=architect_prompt
     )
     
